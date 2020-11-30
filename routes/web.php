@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 Route::resource('produtos', 'ProdutoController');
 
-Route::resource('categoriaProdutos', 'CategoriaProdutoController');
+Route::resource('categoriaProduto', 'CategoriaProdutoController');

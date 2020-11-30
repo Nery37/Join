@@ -29,10 +29,10 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categoriaProdutos = $this->categoriaProdutoRepository->all();
+        $categoriaProduto = $this->categoriaProdutoRepository->all();
 
         return view('categoria_produto.index')
-            ->with('categoriaProdutos', $categoriaProdutos);
+            ->with('categoriaProduto', $categoriaProduto);
     }
 
     /**
@@ -60,7 +60,7 @@ class CategoriaProdutoController extends AppBaseController
 
         Flash::success('Categoria Produto saved successfully.');
 
-        return redirect(route('categoriaProdutos.index'));
+        return redirect(route('categoriaProduto.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoriaProdutoController extends AppBaseController
         if (empty($categoriaProduto)) {
             Flash::error('Categoria Produto not found');
 
-            return redirect(route('categoriaProdutos.index'));
+            return redirect(route('categoriaProduto.index'));
         }
 
         return view('categoria_produto.show')->with('categoriaProduto', $categoriaProduto);
@@ -97,7 +97,7 @@ class CategoriaProdutoController extends AppBaseController
         if (empty($categoriaProduto)) {
             Flash::error('Categoria Produto not found');
 
-            return redirect(route('categoriaProdutos.index'));
+            return redirect(route('categoriaProduto.index'));
         }
 
         return view('categoria_produto.edit')->with('categoriaProduto', $categoriaProduto);
@@ -118,14 +118,14 @@ class CategoriaProdutoController extends AppBaseController
         if (empty($categoriaProduto)) {
             Flash::error('Categoria Produto not found');
 
-            return redirect(route('categoriaProdutos.index'));
+            return redirect(route('categoriaProduto.index'));
         }
 
         $categoriaProduto = $this->categoriaProdutoRepository->update($request->all(), $id);
 
         Flash::success('Categoria Produto updated successfully.');
 
-        return redirect(route('categoriaProdutos.index'));
+        return redirect(route('categoriaProduto.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class CategoriaProdutoController extends AppBaseController
         if (empty($categoriaProduto)) {
             Flash::error('Categoria Produto not found');
 
-            return redirect(route('categoriaProdutos.index'));
+            return redirect(route('categoriaProduto.index'));
         }
 
         $this->categoriaProdutoRepository->delete($id);
 
         Flash::success('Categoria Produto deleted successfully.');
 
-        return redirect(route('categoriaProdutos.index'));
+        return redirect(route('categoriaProduto.index'));
     }
 }

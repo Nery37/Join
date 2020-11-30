@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'categoriaProdutos.store']) !!}
+                    {!! Form::open(['route' => 'categoriaProduto.store']) !!}
 
                         @include('categoria_produto.fields')
 
