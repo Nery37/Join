@@ -15,10 +15,10 @@
             <td>{{ $produto->nome_produto }}</td>
             <td>{{ $produto->valor_produto }}</td>
                 <td>
-                    {!! Form::open(['route' => ['produtos.destroy', $produto->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['produtos.destroy', $produto->id_produto], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('produtos.show', [$produto->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                        <a href="{{ route('produtos.edit', [$produto->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="{{ route('produtos.show', [$produto->id_produto]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="{{ route('produtos.edit', [$produto->id_produto]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}

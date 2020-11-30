@@ -28,7 +28,8 @@ class Produto extends Model
     public $fillable = [
         'data_cadastro',
         'nome_produto',
-        'valor_produto'
+        'valor_produto',
+        'id_categoria_produto'
     ];
 
     /**
@@ -38,6 +39,7 @@ class Produto extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'id_categoria_produto' => 'integer',
         'data_cadastro' => 'datetime',
         'valor_produto' => 'float'
     ];

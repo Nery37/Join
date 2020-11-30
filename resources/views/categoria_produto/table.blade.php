@@ -11,10 +11,10 @@
             <tr>
                 <td>{{ $categoriaProduto->nome_categoria }}</td>
                 <td>
-                    {!! Form::open(['route' => ['categoriaProduto.destroy', $categoriaProduto->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['categoriaProduto.destroy', $categoriaProduto->id_categoria_planejamento], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('categoriaProduto.show', [$categoriaProduto->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                        <a href="{{ route('categoriaProduto.edit', [$categoriaProduto->id]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="{{ route('categoriaProduto.show', [$categoriaProduto->id_categoria_planejamento]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="{{ route('categoriaProduto.edit', [$categoriaProduto->id_categoria_planejamento]) }}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}
