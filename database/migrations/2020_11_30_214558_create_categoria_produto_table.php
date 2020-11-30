@@ -14,8 +14,8 @@ class CreateCategoriaProdutoTable extends Migration
     public function up()
     {
         Schema::create('categoria_produto', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nome_categoria');
+            $table->increments('id_categoria_planejamento');
+            $table->string('nome_categoria', 150);
             $table->timestamps();
             $table->softDeletes();
         });
