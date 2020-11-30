@@ -3,6 +3,6 @@
 </li>
 
 <li class="{{ Request::is('categoriaProduto*') ? 'active' : '' }}">
-    <a href="{{ route('categoriaProduto.index') }}"><i class="fa fa-edit"></i><span>Categoria Produto</span></a>
+    <a href="{{ route('categoriaProduto.index') }}"><i class="fa fa-edit"></i><span>Categoria </span></a>
 </li>
 
