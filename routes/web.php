@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index');
 Route::resource('clientes', 'ClienteController');
+
+Route::resource('produtos', 'ProdutoController');
+
+Route::resource('categoriaProdutos', 'CategoriaProdutoController');
