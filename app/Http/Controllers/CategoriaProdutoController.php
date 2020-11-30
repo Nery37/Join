@@ -31,7 +31,7 @@ class CategoriaProdutoController extends AppBaseController
     {
         $categoriaProdutos = $this->categoriaProdutoRepository->all();
 
-        return view('categoria_produtos.index')
+        return view('categoria_produto.index')
             ->with('categoriaProdutos', $categoriaProdutos);
     }
 
@@ -42,7 +42,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function create()
     {
-        return view('categoria_produtos.create');
+        return view('categoria_produto.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class CategoriaProdutoController extends AppBaseController
             return redirect(route('categoriaProdutos.index'));
         }
 
-        return view('categoria_produtos.show')->with('categoriaProduto', $categoriaProduto);
+        return view('categoria_produto.show')->with('categoriaProduto', $categoriaProduto);
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoriaProdutoController extends AppBaseController
             return redirect(route('categoriaProdutos.index'));
         }
 
-        return view('categoria_produtos.edit')->with('categoriaProduto', $categoriaProduto);
+        return view('categoria_produto.edit')->with('categoriaProduto', $categoriaProduto);
     }
 
     /**

@@ -16,7 +16,7 @@ class CategoriaProduto extends Model
 {
     use SoftDeletes;
 
-    public $table = 'categoria_produtos';
+    public $table = 'categoria_produto';
     
 
     protected $dates = ['deleted_at'];
