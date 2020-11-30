@@ -12,13 +12,8 @@
 */
 
 Route::get('/', function () {
-    return redirect(route('clientes.index'));
+    return redirect(route('produtos.index'));
 });
-
-//Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index');
-Route::resource('clientes', 'ClienteController');
 
 Route::resource('produtos', 'ProdutoController');
 
