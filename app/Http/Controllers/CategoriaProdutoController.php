@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCategoriaProdutoRequest;
 use App\Repositories\CategoriaProdutoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\CategoriaProduto;
 use Flash;
 use Response;
 
@@ -72,7 +73,8 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function show($id)
     {
-        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
+        
+        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -92,7 +94,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function edit($id)
     {
-        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
+        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -113,7 +115,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function update($id, UpdateCategoriaProdutoRequest $request)
     {
-        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
+        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -139,7 +141,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
+        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -147,9 +149,9 @@ class CategoriaProdutoController extends AppBaseController
             return redirect(route('categoriaProduto.index'));
         }
 
-        $this->categoriaProdutoRepository->delete($id);
+        CategoriaProduto::where('id_categoria_planejamento', $id)->delete($id);
 
-        Flash::success('Categoria deletado com sucesso.');
+        Flash::success('Categoria deletada com sucesso.');
 
         return redirect(route('categoriaProduto.index'));
     }
