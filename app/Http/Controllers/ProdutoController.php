@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProdutoRequest;
 use App\Repositories\ProdutoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Produto;
 use Flash;
 use Response;
 
@@ -56,9 +57,13 @@ class ProdutoController extends AppBaseController
     {
         $input = $request->all();
 
+        $input['id_categoria_produto'] = 1;
+        $input['valor_produto'] = str_replace(".", "", $input['valor_produto']);
+        $input['valor_produto'] = str_replace(",", ".", $input['valor_produto']);
+
         $produto = $this->produtoRepository->create($input);
 
-        Flash::success('Produto saved successfully.');
+        Flash::success('Produto salvo com sucesso.');
 
         return redirect(route('produtos.index'));
     }
@@ -72,10 +77,10 @@ class ProdutoController extends AppBaseController
      */
     public function show($id)
     {
-        $produto = $this->produtoRepository->find($id);
+        $produto = Produto::where('id_produto', $id)->first();
 
         if (empty($produto)) {
-            Flash::error('Produto not found');
+            Flash::error('Produto não encontrado');
 
             return redirect(route('produtos.index'));
         }
@@ -92,10 +97,10 @@ class ProdutoController extends AppBaseController
      */
     public function edit($id)
     {
-        $produto = $this->produtoRepository->find($id);
+        $produto = Produto::where('id_produto', $id)->first();
 
         if (empty($produto)) {
-            Flash::error('Produto not found');
+            Flash::error('Produto não encontrado');
 
             return redirect(route('produtos.index'));
         }
@@ -113,17 +118,17 @@ class ProdutoController extends AppBaseController
      */
     public function update($id, UpdateProdutoRequest $request)
     {
-        $produto = $this->produtoRepository->find($id);
+        $produto = Produto::where('id_produto', $id)->first();
 
         if (empty($produto)) {
-            Flash::error('Produto not found');
+            Flash::error('Produto não encontrado');
 
             return redirect(route('produtos.index'));
         }
 
         $produto = $this->produtoRepository->update($request->all(), $id);
 
-        Flash::success('Produto updated successfully.');
+        Flash::success('Produto atualizado com sucesso.');
 
         return redirect(route('produtos.index'));
     }
@@ -139,17 +144,17 @@ class ProdutoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $produto = $this->produtoRepository->find($id);
+        $produto = Produto::where('id_produto', $id)->first();
 
         if (empty($produto)) {
-            Flash::error('Produto not found');
+            Flash::error('Produto não encontrado');
 
             return redirect(route('produtos.index'));
         }
 
-        $this->produtoRepository->delete($id);
+        Produto::where('id_produto', $id)->delete($id);
 
-        Flash::success('Produto deleted successfully.');
+        Flash::success('Produto deletado com sucesso');
 
         return redirect(route('produtos.index'));
     }

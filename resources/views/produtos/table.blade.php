@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ $produto->data_cadastro }}</td>
             <td>{{ $produto->nome_produto }}</td>
-            <td>{{ $produto->valor_produto }}</td>
+            <td>R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</td>
                 <td>
                     {!! Form::open(['route' => ['produtos.destroy', $produto->id_produto], 'method' => 'delete']) !!}
                     <div class='btn-group'>

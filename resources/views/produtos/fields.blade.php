@@ -22,7 +22,7 @@
 <!-- Valor Produto Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('valor_produto', 'Valor Produto:') !!}
-    {!! Form::number('valor_produto', null, ['class' => 'form-control']) !!}
+    {!! Form::text('valor_produto', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
