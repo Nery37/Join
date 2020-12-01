@@ -103,8 +103,11 @@ class ProdutoController extends AppBaseController
         $produto = $this->produtoRepository->find($id);
         $categorias = CategoriaProduto::pluck('nome_categoria', 'id_categoria_planejamento');
 
+        $valor = number_format($produto->valor_produto, 2, ',', '.');
+        $valor = str_replace(",", "", $valor);
+        $valor = str_replace(".", "", $valor);
+        $produto->valor_produto = intVal($valor);
 
-        dd($produto);
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
 
@@ -126,13 +129,18 @@ class ProdutoController extends AppBaseController
     {
         $produto = $this->produtoRepository->find($id);
 
+        $input = $request->all();
+        $input['valor_produto'] = str_replace(".", "", $input['valor_produto']);
+        $input['valor_produto'] = str_replace(",", ".", $input['valor_produto']);
+
+
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
 
             return redirect(route('produtos.index'));
         }
 
-        $produto = $this->produtoRepository->update($request->all(), $id);
+        $produto = $this->produtoRepository->update($input, $id);
 
         Flash::success('Produto atualizado com sucesso.');
 

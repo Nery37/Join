@@ -117,10 +117,6 @@
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script>
     $(document).ready(function () { 
-        var $celular = $("#telefone");
-        $celular.mask('(00) 00000-0000');
-        var $cpf = $("#cpf");
-        $cpf.mask('000.000.000-00');
         var $money = $("#valor_produto");
         $money.mask('000.000.000.000.000,00', {reverse: true});
         
