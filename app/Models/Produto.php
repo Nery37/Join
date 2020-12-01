@@ -52,9 +52,9 @@ class Produto extends Model
      * @var array
      */
     public static $rules = [
-        'data_cadastro' => 'required',
         'nome_produto' => 'required',
-        'valor_produto' => 'required'
+        'valor_produto' => 'required',
+        'id_categoria_produto' => 'required'
     ];
 
     

@@ -11,7 +11,7 @@
         <tbody>
         @foreach($produtos as $produto)
             <tr>
-                <td>{{ $produto->data_cadastro }}</td>
+            <td>{{ $produto->data_cadastro->format('d/m/Y H:i:s') }}</td>
             <td>{{ $produto->nome_produto }}</td>
             <td>R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</td>
                 <td>

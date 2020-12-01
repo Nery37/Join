@@ -62,6 +62,7 @@ class ProdutoController extends AppBaseController
 
         $input['valor_produto'] = str_replace(".", "", $input['valor_produto']);
         $input['valor_produto'] = str_replace(",", ".", $input['valor_produto']);
+        $input['data_cadastro'] = date("Y-m-d H:i:s");
 
         $produto = $this->produtoRepository->create($input);
 
@@ -102,6 +103,8 @@ class ProdutoController extends AppBaseController
         $produto = $this->produtoRepository->find($id);
         $categorias = CategoriaProduto::pluck('nome_categoria', 'id_categoria_planejamento');
 
+
+        dd($produto);
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
 
