@@ -21,6 +21,8 @@ class Produto extends Model
     public $table = 'produtos';
     
 
+    protected $primaryKey = 'id_produto'; 
+
     protected $dates = ['deleted_at'];
 
 

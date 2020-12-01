@@ -18,9 +18,9 @@ class CategoriaProduto extends Model
 
     public $table = 'categoria_produto';
     
+    protected $primaryKey = 'id_categoria_planejamento'; 
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [

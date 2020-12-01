@@ -8,6 +8,7 @@ use App\Repositories\ProdutoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\CategoriaProduto;
 use Flash;
 use Response;
 
@@ -43,7 +44,9 @@ class ProdutoController extends AppBaseController
      */
     public function create()
     {
-        return view('produtos.create');
+        $categorias = CategoriaProduto::pluck('nome_categoria', 'id_categoria_planejamento');
+
+        return view('produtos.create', compact('categorias', $categorias));
     }
 
     /**
@@ -57,7 +60,6 @@ class ProdutoController extends AppBaseController
     {
         $input = $request->all();
 
-        $input['id_categoria_produto'] = 1;
         $input['valor_produto'] = str_replace(".", "", $input['valor_produto']);
         $input['valor_produto'] = str_replace(",", ".", $input['valor_produto']);
 
@@ -77,7 +79,7 @@ class ProdutoController extends AppBaseController
      */
     public function show($id)
     {
-        $produto = Produto::where('id_produto', $id)->first();
+        $produto = $this->produtoRepository->find($id);
 
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
@@ -97,7 +99,8 @@ class ProdutoController extends AppBaseController
      */
     public function edit($id)
     {
-        $produto = Produto::where('id_produto', $id)->first();
+        $produto = $this->produtoRepository->find($id);
+        $categorias = CategoriaProduto::pluck('nome_categoria', 'id_categoria_planejamento');
 
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
@@ -105,7 +108,7 @@ class ProdutoController extends AppBaseController
             return redirect(route('produtos.index'));
         }
 
-        return view('produtos.edit')->with('produto', $produto);
+        return view('produtos.edit')->with('produto', $produto)->with('categorias', $categorias);
     }
 
     /**
@@ -118,7 +121,7 @@ class ProdutoController extends AppBaseController
      */
     public function update($id, UpdateProdutoRequest $request)
     {
-        $produto = Produto::where('id_produto', $id)->first();
+        $produto = $this->produtoRepository->find($id);
 
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
@@ -144,7 +147,7 @@ class ProdutoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $produto = Produto::where('id_produto', $id)->first();
+        $produto = $this->produtoRepository->find($id);
 
         if (empty($produto)) {
             Flash::error('Produto não encontrado');
@@ -152,7 +155,7 @@ class ProdutoController extends AppBaseController
             return redirect(route('produtos.index'));
         }
 
-        Produto::where('id_produto', $id)->delete($id);
+        $this->produtoRepository->find($id)->delete();
 
         Flash::success('Produto deletado com sucesso');
 

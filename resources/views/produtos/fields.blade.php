@@ -25,6 +25,12 @@
     {!! Form::text('valor_produto', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Categoria Field -->
+<div class="form-group col-sm-6" >
+    {!! Form::label('id_categoria_produto', 'Categoria:') !!}
+    {!! Form::select('id_categoria_produto', $categorias, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

@@ -74,7 +74,7 @@ class CategoriaProdutoController extends AppBaseController
     public function show($id)
     {
         
-        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
+        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -94,7 +94,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function edit($id)
     {
-        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
+        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -115,7 +115,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function update($id, UpdateCategoriaProdutoRequest $request)
     {
-        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
+        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -141,7 +141,7 @@ class CategoriaProdutoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $categoriaProduto = CategoriaProduto::where('id_categoria_planejamento', $id)->first();
+        $categoriaProduto = $this->categoriaProdutoRepository->find($id);
 
         if (empty($categoriaProduto)) {
             Flash::error('Categoria não encontrada.');
@@ -149,7 +149,7 @@ class CategoriaProdutoController extends AppBaseController
             return redirect(route('categoriaProduto.index'));
         }
 
-        CategoriaProduto::where('id_categoria_planejamento', $id)->delete($id);
+        $this->categoriaProdutoRepository->find($id)->delete();
 
         Flash::success('Categoria deletada com sucesso.');
 
