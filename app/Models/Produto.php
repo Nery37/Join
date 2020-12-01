@@ -57,5 +57,10 @@ class Produto extends Model
         'id_categoria_produto' => 'required'
     ];
 
+    public function categoria()
+    {
+        return $this->belongsTo('App\Models\CategoriaProduto', 'id_categoria_produto', 'id_categoria_planejamento');
+    }
+
     
 }

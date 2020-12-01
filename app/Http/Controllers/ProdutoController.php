@@ -31,7 +31,7 @@ class ProdutoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $produtos = $this->produtoRepository->all();
+        $produtos = Produto::with('categoria')->get();
 
         return view('produtos.index')
             ->with('produtos', $produtos);
