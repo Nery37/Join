@@ -14,7 +14,11 @@
             <tr>
             <td>{{ $produto->data_cadastro->format('d/m/Y H:i:s') }}</td>
             <td>{{ $produto->nome_produto }}</td>
-            <td>{{ $produto->categoria->nome_categoria}}</td>
+            @if($produto->categoria !== null)
+                <td>{{ $produto->categoria->nome_categoria}}</td>
+            @else
+                <td></td>
+            @endif
             <td>R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</td>
                 <td>
                     {!! Form::open(['route' => ['produtos.destroy', $produto->id_produto], 'method' => 'delete']) !!}
